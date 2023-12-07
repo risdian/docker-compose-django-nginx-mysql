@@ -15,7 +15,17 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from . import views
+from django.conf.urls.static import static
+from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('ai-view', views.ai_view),
+    path('ai-upload-file/<int:ai_id>', views.upload_file, name='upload_file'),
+    path('ai-request', views.ai_request),
+
 ]
+# This serves media files only during development, when DEBUG is True.
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

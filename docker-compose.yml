@@ -15,8 +15,8 @@ services:
       context: ./django
     container_name: "django_cont"
     ports:
-      - 8001:8001
-    command: gunicorn core.wsgi --bind 0.0.0.0:8001
+      - 8005:8005  #the first is inside host, the second is for inside container 
+    command: gunicorn core.wsgi --bind 0.0.0.0:8005
     env_file:
       - "./django/.env"
     depends_on:
